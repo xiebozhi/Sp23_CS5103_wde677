@@ -15,16 +15,24 @@ def count_words(text):
     # replace tabs and newlines with spaces
     text = text.replace("\t", "*").replace("\n", "*").replace(" ", "*") #breaks? on "  " double space?
     #print(text) #debug
+
+    if (text==""):
+        raise ValueError("Input document cannot be empty")
+
+    if (len(text)>=10000):
+        print(text)
+        raise ValueError("Input document exceeds maximum length")
+    else:
+
+        # split text into lowercase words
+        words = text.lower().split("*")
     
-    # split text into lowercase words
-    words = text.lower().split("*")
-    
-    # count frequency of each unique word
-    word_counts = {}
-    for word in words:
-        if word not in word_counts:
-            word_counts[word] = 1
-        else:
-            word_counts[word] += 1
+        # count frequency of each unique word
+        word_counts = {}
+        for word in words:
+            if word not in word_counts:
+                word_counts[word] = 1
+            else:
+                word_counts[word] += 1
             
-    return word_counts
+        return word_counts
