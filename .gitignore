@@ -1,3 +1,8 @@
+# Dev folders to ignore
+.vs/
+TestResults/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
