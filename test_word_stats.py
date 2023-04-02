@@ -1,5 +1,7 @@
 import unittest
 from word_stats import count_words  # Import the count_words function from the word_stats module
+from word_stats import count_lines
+from word_stats import count_chars  
 
 class TestCountWords(unittest.TestCase):
     def test_normal_input(self):
@@ -45,3 +47,15 @@ class TestCountWords(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 
+
+class TestCountLines(unittest.TestCase):
+    def test_normal_input(self):
+        doc = "This is a test. \nThis is only a test.\n"
+        expected_output = 2
+        self.assertEqual(count_lines(doc), expected_output)
+
+class TestCountChars(unittest.TestCase):
+    def test_normal_input(self):
+        doc = "This is a test. \nThis is only a test.\n"
+        expected_output = 28
+        self.assertEqual(count_chars(doc), expected_output)
