@@ -31,6 +31,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+TestResults #removing VS unit testing files from consideration
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -133,3 +134,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /.vs/slnx.sqlite
+/TestResults
+/.vs/VSWorkspaceState.json
