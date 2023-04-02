@@ -1,7 +1,5 @@
 # Dev folders to ignore
 .vs/
-.vs/*
-.wsuo
 TestResults/
 
 
