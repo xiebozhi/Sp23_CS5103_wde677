@@ -1,8 +1,20 @@
+# Bobb Shields
+# wde677
+#
+
+# Unit testing code for word statistics functions
+# First sprint: count_words
+# Second sprint: count_lines, count_chars
+#
+
+
 import unittest
 from word_stats import count_words  # Import the count_words function from the word_stats module
 from word_stats import count_lines
 from word_stats import count_chars  
 
+# Word Count Test Code
+#
 class TestCountWords(unittest.TestCase):
     def test_normal_input(self):
         doc = "This is a test. This is only a test."
@@ -47,13 +59,16 @@ class TestCountWords(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 
-
+# Line Count Test Code
+#
 class TestCountLines(unittest.TestCase):
     def test_normal_input(self):
         doc = "This is a test. \nThis is only a test.\n"
         expected_output = 2
         self.assertEqual(count_lines(doc), expected_output)
 
+# Char Count Test Code
+#
 class TestCountChars(unittest.TestCase):
     def test_normal_input(self):
         doc = "This is a test. \nThis is only a test.\n"

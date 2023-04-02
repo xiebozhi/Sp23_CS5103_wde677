@@ -6,12 +6,11 @@
 # First sprint: count_words
 # Second sprint: count_lines, count_chars
 #
-
-# Count of the individual words.  
-# All characters pushed to lowercase as to make this case insensitive
-#
 import string
 
+# Combine all the functions together in one function, for ease   
+# 
+#
 def print_stats(text):
 
     return ( "Num Lines: " + str(count_lines(text)) +"\n" +
@@ -19,6 +18,9 @@ def print_stats(text):
             "Word Stats:\n" + str(count_words(text) )
         )
 
+# Count of the individual words.  
+# All characters pushed to lowercase as to make this case insensitive
+#
 def count_words(text):
     # replace tabs and newlines with spaces
     text = text.replace("\t", "*").replace("\n", "*").replace(" ", "*") #breaks? on "  " double space?
@@ -45,6 +47,9 @@ def count_words(text):
             
         return word_counts
 
+# Count of the lines.  
+# (Counting the new strings)
+#
 def count_lines (text): #looks for all “\n” tokens in the given string
 
     line_count = 0
@@ -54,6 +59,9 @@ def count_lines (text): #looks for all “\n” tokens in the given string
 
     return line_count
 
+# Count of the individual characters.  
+# Whitespace removed (space, tab, linefeed, return, formfeed, and vertical tab)
+#
 def count_chars(text): #CharCount is simply the length of the text field.
 
     print(f"len = {len(text)}")
