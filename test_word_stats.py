@@ -12,6 +12,7 @@ import unittest
 from word_stats import count_words  # Import the count_words function from the word_stats module
 from word_stats import count_lines
 from word_stats import count_chars  
+from word_stats import check_input
 
 # Input checking Test Code
 #
@@ -21,17 +22,21 @@ class TestInputChecking(unittest.TestCase):
         with self.assertRaises(ValueError):
             count_words(doc)
 
-    def test_maximum_length(self):
+    def test_maximum_length(self): #User case: Data Scientist max limit concerns
         doc = "A" * 10001
         with self.assertRaises(ValueError):
-            count_words(doc)
+            count_lines(doc)
+
+    def test_almost_maximum_length(self): #User case: Data Scientist max limit concerns
+        doc = "A" * 10000
+        self.assertTrue(check_input(doc))
 
 # Word Count Test Code
 #
 class TestCountWords(unittest.TestCase):
     def test_normal_input(self):
-        doc = "This is a test. This is only a test."
-        expected_output = {'this': 2, 'is': 2, 'a': 2, 'test.': 2, 'only': 1}
+        doc = "The quick brown fox jumped over the lazy dog, but the 1 dog didn't care. The fox was too fast for the 2 dogs to catch, and they could only watch as it disappeared into the distance. However, the 3rd dog was smarter than the others and knew a shortcut;\n\n it ran ahead and caught the fox by surprise! \"What's going on here?\" the fox asked. But the dog just barked in triumph, knowing that it had won the race.\n\n Meanwhile, the lazy dog snoozed on, oblivious to the excitement happening around it.\n + = % $ \n\n fin fin."        
+        expected_output = {'the': 14, 'quick': 1, 'brown': 1, 'fox': 4, 'jumped': 1, 'over': 1, 'lazy': 2, 'dog,': 1, 'but': 2, '1': 1, 'dog': 4, "didn't": 1, 'care.': 1, 'was': 2, 'too': 1, 'fast': 1, 'for': 1, '2': 1, 'dogs': 1, 'to': 2, 'catch,': 1, 'and': 3, 'they': 1, 'could': 1, 'only': 1, 'watch': 1, 'as': 1, 'it': 3, 'disappeared': 1, 'into': 1, 'distance.': 1, 'however,': 1, '3rd': 1, 'smarter': 1, 'than': 1, 'others': 1, 'knew': 1, 'a': 1, 'shortcut;': 1, '': 8, 'ran': 1, 'ahead': 1, 'caught': 1, 'by': 1, 'surprise!': 1, '"what\'s': 1, 'going': 1, 'on': 1, 'here?"': 1, 'asked.': 1, 'just': 1, 'barked': 1, 'in': 1, 'triumph,': 1, 'knowing': 1, 'that': 1, 'had': 1, 'won': 1, 'race.': 1, 'meanwhile,': 1, 'snoozed': 1, 'on,': 1, 'oblivious': 1, 'excitement': 1, 'happening': 1, 'around': 1, 'it.': 1, '+': 1, '=': 1, '%': 1, '$': 1, 'fin': 1, 'fin.': 1}
         self.assertEqual(count_words(doc), expected_output)
 
     def test_case_insensitive(self):
@@ -66,14 +71,15 @@ if __name__ == '__main__':
 #
 class TestCountLines(unittest.TestCase):
     def test_normal_input(self):
-        doc = "This is a test. \nThis is only a test.\n"
-        expected_output = 3
+        doc = "The quick brown fox jumped over the lazy dog, but the 1 dog didn't care. The fox was too fast for the 2 dogs to catch, and they could only watch as it disappeared into the distance. However, the 3rd dog was smarter than the others and knew a shortcut;\n\n it ran ahead and caught the fox by surprise! \"What's going on here?\" the fox asked. But the dog just barked in triumph, knowing that it had won the race.\n\n Meanwhile, the lazy dog snoozed on, oblivious to the excitement happening around it.\n + = % $ \n\n fin fin."        
+        expected_output = 8
         self.assertEqual(count_lines(doc), expected_output)
 
 # Char Count Test Code
 #
 class TestCountChars(unittest.TestCase):
     def test_normal_input(self):
-        doc = "This is a test. \nThis is only a test.\n"
-        expected_output = 28
+        doc = "The quick brown fox jumped over the lazy dog, but the 1 dog didn't care. The fox was too fast for the 2 dogs to catch, and they could only watch as it disappeared into the distance. However, the 3rd dog was smarter than the others and knew a shortcut;\n\n it ran ahead and caught the fox by surprise! \"What's going on here?\" the fox asked. But the dog just barked in triumph, knowing that it had won the race.\n\n Meanwhile, the lazy dog snoozed on, oblivious to the excitement happening around it.\n + = % $ \n\n fin fin."        
+        expected_output = 409
         self.assertEqual(count_chars(doc), expected_output)
+
