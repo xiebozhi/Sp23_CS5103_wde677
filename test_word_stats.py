@@ -30,6 +30,11 @@ class TestInputChecking(unittest.TestCase):
     def test_almost_maximum_length(self): #User case: Data Scientist max limit concerns
         doc = "A" * 10000
         self.assertTrue(check_input(doc))
+    
+    def test_is_string(self): 
+        doc = 1000
+        with self.assertRaises(TypeError):
+            check_input(doc)
 
 # Word Count Test Code
 #
@@ -64,15 +69,27 @@ class TestCountWords(unittest.TestCase):
         expected_output = {'this': 2, 'is': 2, 'a': 2, 'test.': 2, 'only': 1, '': 6}
         self.assertEqual(count_words(doc), expected_output)
 
-if __name__ == '__main__':
-    unittest.main()
-
 # Line Count Test Code
 #
 class TestCountLines(unittest.TestCase):
     def test_normal_input(self):
         doc = "The quick brown fox jumped over the lazy dog, but the 1 dog didn't care. The fox was too fast for the 2 dogs to catch, and they could only watch as it disappeared into the distance. However, the 3rd dog was smarter than the others and knew a shortcut;\n\n it ran ahead and caught the fox by surprise! \"What's going on here?\" the fox asked. But the dog just barked in triumph, knowing that it had won the race.\n\n Meanwhile, the lazy dog snoozed on, oblivious to the excitement happening around it.\n + = % $ \n\n fin fin."        
         expected_output = 8
+        self.assertEqual(count_lines(doc), expected_output)
+
+    def test_tab_characters(self):
+        doc = "This\tis\ta\ttest.\tThis\tis\tonly\ta\ttest."
+        expected_output = 1
+        self.assertEqual(count_lines(doc), expected_output)
+
+    def test_combination_of_separators(self):
+        doc = "This \tis\n a\t test.\nThis\tis only a test."
+        expected_output = 3
+        self.assertEqual(count_lines(doc), expected_output)
+
+    def test_double_space(self):
+        doc = "This  \tis\n a\t  test.\nThis\tis only a  test."
+        expected_output = 3
         self.assertEqual(count_lines(doc), expected_output)
 
 # Char Count Test Code
@@ -82,4 +99,21 @@ class TestCountChars(unittest.TestCase):
         doc = "The quick brown fox jumped over the lazy dog, but the 1 dog didn't care. The fox was too fast for the 2 dogs to catch, and they could only watch as it disappeared into the distance. However, the 3rd dog was smarter than the others and knew a shortcut;\n\n it ran ahead and caught the fox by surprise! \"What's going on here?\" the fox asked. But the dog just barked in triumph, knowing that it had won the race.\n\n Meanwhile, the lazy dog snoozed on, oblivious to the excitement happening around it.\n + = % $ \n\n fin fin."        
         expected_output = 409
         self.assertEqual(count_chars(doc), expected_output)
+    def test_tab_characters(self):
+        doc = "This\tis\ta\ttest.\tThis\tis\tonly\ta\ttest."
+        expected_output = 28
+        self.assertEqual(count_chars(doc), expected_output)
+
+    def test_combination_of_separators(self):
+        doc = "This \tis\n a\t test.\nThis\tis only a test."
+        expected_output = 28
+        self.assertEqual(count_chars(doc), expected_output)
+
+    def test_double_space(self):
+        doc = "This  \tis\n a\t  test.\nThis\tis only a  test."
+        expected_output = 28
+        self.assertEqual(count_chars(doc), expected_output)
+
+if __name__ == '__main__':
+    unittest.main()
 

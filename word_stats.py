@@ -23,13 +23,16 @@ def print_stats(text):
 #
 def check_input(text):
 
+    if not isinstance(text, str):
+        raise TypeError("Input must be a string")
+
     if (text==""):
         raise ValueError("Input cannot be empty")
 
     if (len(text)>=10000):
         print(text)
         raise ValueError("Input exceeds maximum length")
-
+    
     return True
 
 # Count of the individual words.  
