@@ -62,7 +62,8 @@ def count_lines (text): #looks for all “\n” tokens in the given string
     #check input and it will throw errors if needed
     check_input(text)
 
-    line_count = 0
+    # Line count starts at 1 because a non-empty string with no \n's is itself a line 
+    line_count = 1
     for i in range(0,len(text) ):
         if text[i] == "\n": 
             line_count = line_count + 1
