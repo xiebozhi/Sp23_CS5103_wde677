@@ -18,3 +18,7 @@ count_words("I love coding.  Don't you love coding?")
 
 Unit testing is working in Visual Studio Enterprise so the function can be run through those ringers too
 
+First Sprint: count words between tokens
+Second sprint: count lines and characters
+
+
