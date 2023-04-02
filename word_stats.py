@@ -12,6 +12,13 @@
 #
 import string
 
+def print_stats(text):
+
+    return ( "Num Lines: " + str(count_lines(text)) +"\n" +
+            "Num Chars: " + str(count_chars(text)) + "\n" +
+            "Word Stats:\n" + str(count_words(text) )
+        )
+
 def count_words(text):
     # replace tabs and newlines with spaces
     text = text.replace("\t", "*").replace("\n", "*").replace(" ", "*") #breaks? on "  " double space?
