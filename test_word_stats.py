@@ -19,12 +19,12 @@ from word_stats import check_input
 class TestInputChecking(unittest.TestCase):
     def test_empty_input(self):
         doc = ""
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegex(ValueError, "Input cannot be empty"):
             count_words(doc)
 
     def test_maximum_length(self): #User case: Data Scientist max limit concerns
         doc = "A" * 10001
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegex(ValueError, "Input exceeds maximum length"):
             count_lines(doc)
 
     def test_almost_maximum_length(self): #User case: Data Scientist max limit concerns
@@ -33,7 +33,7 @@ class TestInputChecking(unittest.TestCase):
     
     def test_is_string(self): 
         doc = 1000
-        with self.assertRaises(TypeError):
+        with self.assertRaisesRegex(TypeError, "Input must be a string"):
             check_input(doc)
 
 # Word Count Test Code
@@ -45,8 +45,8 @@ class TestCountWords(unittest.TestCase):
         self.assertEqual(count_words(doc), expected_output)
 
     def test_case_insensitive(self):
-        doc = "Hello, World! This is a TEST of case-insensitive words."
-        expected_output = {'hello,': 1, 'world!': 1, 'this': 1, 'is': 1, 'a': 1, 'test': 1, 'of': 1, 'case-insensitive': 1, 'words.': 1}
+        doc = "Hello, World! This is a TEST of case-insensitive words. Test test TESt Test"
+        expected_output = {'hello,': 1, 'world!': 1, 'this': 1, 'is': 1, 'a': 1, 'test': 5, 'of': 1, 'case-insensitive': 1, 'words.': 1}
         self.assertEqual(count_words(doc), expected_output)
 
     def test_newline_characters(self):
