@@ -12,7 +12,8 @@ import unittest
 from word_stats import count_words  # Import the count_words function from the word_stats module
 from word_stats import count_lines
 from word_stats import count_chars  
-from word_stats import check_input
+from word_stats import check_input 
+from word_stats import print_stats
 
 # Input checking Test Code
 #
@@ -113,6 +114,24 @@ class TestCountChars(unittest.TestCase):
         doc = "This  \tis\n a\t  test.\nThis\tis only a  test."
         expected_output = 28
         self.assertEqual(count_chars(doc), expected_output)
+
+# Scenario print_stats Test Code
+#
+class TestScenarios(unittest.TestCase):
+    def test_NumbersWithTabs(self):
+        doc = "1\t2\t3\t4\n5\t6\t7\t8\n9\t10\t11\t12"
+        try:
+            print(print_stats(doc))
+        except:
+            self.fail("Unexpected exception was raised.")
+
+    def test_simple_formula(self):
+        doc = "30 = [(2 + 4) * (8 / 2)] - 10 + 5^2 * (3 - 1) / 4"
+        try:
+            print(print_stats(doc))
+        except:
+            self.fail("Unexpected exception was raised.")
+            
 
 if __name__ == '__main__':
     unittest.main()
