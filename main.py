@@ -7,3 +7,10 @@ import word_stats
 
 print(word_stats.print_stats("This is a general test of the broadcast system.\n Please return to your homes\n 1234 5678\n"))
 
+#infinite while loop, easily broken out of 
+while True:
+    input_text = input("Enter text to analyze (or '\q' to exit): ")
+    if input_text.lower() == "\q":
+        break
+    print(word_stats.print_stats(input_text))
+

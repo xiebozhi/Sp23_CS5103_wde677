@@ -15,7 +15,7 @@ def print_stats(text):
 
     return ("Num Lines: " + str(count_lines(text)) +"\n" +
             "Num Chars: " + str(count_chars(text)) + "\n" +
-            "Word Stats:\n" + str(count_words(text) )
+            "Word Counts by freq:\n" + str(count_words(text) )
         )
 
 # One function, near the top, that enables input error checking for all functions  
@@ -56,7 +56,10 @@ def count_words(text):
         else:
             word_counts[word] += 1
             
-    return word_counts
+    # sort dictionary by value in descending order
+    sorted_word_counts = dict(sorted(word_counts.items(), key=lambda item: item[1], reverse=True))
+
+    return sorted_word_counts
 
 # Count of the lines.  
 # (Counting the new strings)

@@ -131,7 +131,13 @@ class TestScenarios(unittest.TestCase):
             print(print_stats(doc))
         except:
             self.fail("Unexpected exception was raised.")
-            
+
+    def test_normal_insert(self):
+        doc = "The quick brown fox jumped over the lazy dog, but the 1 dog didn't care. The fox was too fast for the 2 dogs to catch, and they could only watch as it disappeared into the distance. However, the 3rd dog was smarter than the others and knew a shortcut;\n\n it ran ahead and caught the fox by surprise! \"What's going on here?\" the fox asked. But the dog just barked in triumph, knowing that it had won the race.\n\n Meanwhile, the lazy dog snoozed on, oblivious to the excitement happening around it.\n + = % $ \n\n fin fin."        
+        try:
+            print(print_stats(doc))
+        except:
+            self.fail("Unexpected exception was raised.")                  
 
 if __name__ == '__main__':
     unittest.main()
