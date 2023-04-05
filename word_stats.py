@@ -18,7 +18,7 @@ def print_stats(text):
             "Word Counts by freq:\n" + str(count_words(text) )
         )
 
-# One function, near the top, that enables input error checking for all functions  
+# Global input bounds checker that throws errors if failed  
 # 
 #
 def check_input(text):
@@ -90,3 +90,28 @@ def count_chars(text): #CharCount is simply the length of the text field.
             char_count += 1
 
     return char_count
+
+
+#Third Sprint: Word Statistics: The second requirement change is to allow replacement of all occurrences of a 
+#given word to a given replacement word. Note that the replacement happens only when the given pattern word 
+#matches with a whole word. For example, for text “ab cd ef”, replace “a” with “b” will result in no change, 
+#while replace “ab” with “cd” will result in “cd cd ef”. 
+
+#similar to count_words, but 
+
+# Count of the individual words.  
+# All characters pushed to lowercase as to make this case insensitive
+#
+def replace_word(text, find, replace):
+    #check input and it will throw errors if needed
+    check_input(text)
+    check_input(find)
+    check_input(replace)
+
+    # replace tabs and newlines with spaces
+    text = text.replace(find, replace)
+    
+    return text
+
+#problem: #The FFF THE FFFe three
+#print(word_stats.replace_word("The the THE thee three", "the", "FFF") )

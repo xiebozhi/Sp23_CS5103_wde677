@@ -18,5 +18,6 @@ Unit testing is working in Visual Studio Enterprise so the function can be run t
 
 First Sprint: count words between tokens
 Second sprint: count lines and characters
+Third sprint: replace words (case sensitive and whole words only) 
 
 To run this code, you can execute main.py.  It will bring up a while true loop that accepts input and spits out statistics
