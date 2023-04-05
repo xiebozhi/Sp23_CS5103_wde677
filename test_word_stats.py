@@ -15,6 +15,10 @@ from word_stats import count_chars
 from word_stats import check_input 
 from word_stats import print_stats
 
+#not sure what this is but afraid to delete it since unittest.(RELATED)
+if __name__ == '__main__':
+    unittest.main()
+
 # Input checking Test Code
 #
 class TestInputChecking(unittest.TestCase):
@@ -139,6 +143,5 @@ class TestScenarios(unittest.TestCase):
         except:
             self.fail("Unexpected exception was raised.")                  
 
-if __name__ == '__main__':
-    unittest.main()
+
 
