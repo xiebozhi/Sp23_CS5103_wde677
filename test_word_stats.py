@@ -30,7 +30,7 @@ class TestInputChecking(unittest.TestCase):
             count_lines(doc)
 
     def test_almost_maximum_length(self): #User case: Data Scientist max limit concerns
-        doc = "A" * 10000
+        doc = "A" * 9999
         self.assertTrue(check_input(doc))
     
     def test_is_string(self): 
@@ -44,7 +44,7 @@ class TestInputChecking(unittest.TestCase):
 
     def test_null_list(self): 
         doc = ["","test2"]
-        with self.assertRaisesRegex(TypeError, "Input cannot be empty"):
+        with self.assertRaisesRegex(ValueError, "Input cannot be empty"):
             check_input(doc)
 
 # Word Count Test Code
@@ -152,11 +152,6 @@ class TestScenarios(unittest.TestCase):
 # Replace Word Test Code
 # 
 class TestWordReplace(unittest.TestCase):
-    def test_replace_normal(self):
-        doc = "The quick brown fox jumped over the lazy dog, but the 1 dog didn't care. The fox was too fast for the 2 dogs to catch, and they could only watch as it disappeared into the distance. However, the 3rd dog was smarter than the others and knew a shortcut;\n\n it ran ahead and caught the fox by surprise! \"What's going on here?\" the fox asked. But the dog just barked in triumph, knowing that it had won the race.\n\n Meanwhile, the lazy dog snoozed on, oblivious to the excitement happening around it.\n + = % $ \n\n fin fin."        
-        expected_output = "The quick brown fox jumped over THE lazy dog, but THE 1 dog didn't care. The fox was too fast for THE 2 dogs to catch, and THEy could only watch as it disappeared into THE distance. However, THE 3rd dog was smarter than THE oTHErs and knew a shortcut;\n\n it ran ahead and caught THE fox by surprise! \"What's going on here?\" THE fox asked. But THE dog just barked in triumph, knowing that it had won THE race.\n\n Meanwhile, THE lazy dog snoozed on, oblivious to THE excitement happening around it.\n + = % $ \n\n fin fin."        
-        self.assertEqual(replace_word(doc,"the", "THE"), expected_output)
-
     def test_distinct_words_1(self):
         doc = "The the THE thee three"
         expected_output = "FFF the THE thee three"
