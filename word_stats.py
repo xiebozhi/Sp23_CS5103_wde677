@@ -4,12 +4,14 @@
 
 # Stats for text passed in as the singular parameter
 # First sprint: count_words
-# Second sprint: count_lines, count_chars
-#
-import string
+# Second sprint: count_lines, count_chars, check_input
+# Third sprint: replace_word, check_input([list])
 
-# Combine all the functions together in one function, for ease   
-# 
+import string
+import re
+
+# Combine function calls with same parameter together to print and label 
+# Just a courtesy 
 #
 def print_stats(text):
 
@@ -18,20 +20,29 @@ def print_stats(text):
             "Word Counts by freq:\n" + str(count_words(text) )
         )
 
-# One function, near the top, that enables input error checking for all functions  
+# Global input bounds checker that throws specific errors if failed  
 # 
 #
 def check_input(text):
 
-    if not isinstance(text, str):
-        raise TypeError("Input must be a string")
+    #if input is a single string, save as a list
+    if isinstance(text, str):
+        text_list = [text]
+    elif isinstance(text, list):
+        text_list = text
+    else:
+        raise TypeError("Input must be a string or a list")
 
-    if (text==""):
-        raise ValueError("Input cannot be empty")
+    for text in text_list:
+        if not isinstance(text, str):
+            raise TypeError("Elements in list must be strings")
 
-    if (len(text)>=10000):
-        print(text)
-        raise ValueError("Input exceeds maximum length")
+        if text == "":
+            raise ValueError("Input cannot be empty")
+
+        if len(text) >= 10000:
+            print(text)
+            raise ValueError("Input exceeds maximum length")
     
     return True
 
@@ -62,9 +73,9 @@ def count_words(text):
     return sorted_word_counts
 
 # Count of the lines.  
-# (Counting the new strings)
+# number of new line characters + 1 
 #
-def count_lines (text): #looks for all “\n” tokens in the given string
+def count_lines (text): #looks for all \n tokens in the given string
     #check input and it will throw errors if needed
     check_input(text)
 
@@ -76,7 +87,7 @@ def count_lines (text): #looks for all “\n” tokens in the given string
 
     return line_count
 
-# Count of the individual characters.  
+# Count of the individual characters
 # Whitespace removed (space, tab, linefeed, return, formfeed, and vertical tab)
 #
 def count_chars(text): #CharCount is simply the length of the text field.
@@ -90,3 +101,17 @@ def count_chars(text): #CharCount is simply the length of the text field.
             char_count += 1
 
     return char_count
+
+# Replace a word within a string.  
+# Uses regular expression to evaluate against the whole word
+# Adding ", flags=re.IGNORECASE" as arg to re.sub() affects case sensitivity 
+def replace_word(text, find, replace):
+    #check inputs and it will throw errors if needed
+    check_list = [text, find, replace]
+    check_input(check_list)
+
+   # use regular expression to match whole words only
+    pattern = r'\b{}\b'.format(re.escape(find))
+    text = re.sub(pattern, replace, text ) # <- Case sentitivity flag goes here if needed in future
+
+    return text

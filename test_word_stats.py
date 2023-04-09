@@ -4,8 +4,8 @@
 
 # Unit testing code for word statistics functions
 # First sprint: count_words
-# Second sprint: count_lines, count_chars
-#
+# Second sprint: count_lines, count_chars, check_input, test scenarios
+# Third sprint: replace_word, check_input([list])
 
 
 import unittest
@@ -13,6 +13,7 @@ from word_stats import count_words  # Import the count_words function from the w
 from word_stats import count_lines
 from word_stats import count_chars  
 from word_stats import check_input 
+from word_stats import replace_word 
 from word_stats import print_stats
 
 # Input checking Test Code
@@ -29,12 +30,21 @@ class TestInputChecking(unittest.TestCase):
             count_lines(doc)
 
     def test_almost_maximum_length(self): #User case: Data Scientist max limit concerns
-        doc = "A" * 10000
+        doc = "A" * 9999
         self.assertTrue(check_input(doc))
     
     def test_is_string(self): 
         doc = 1000
         with self.assertRaisesRegex(TypeError, "Input must be a string"):
+            check_input(doc)
+    
+    def test_good_list(self): 
+        doc = ["test","test2"]
+        self.assertTrue(check_input(doc))
+
+    def test_null_list(self): 
+        doc = ["","test2"]
+        with self.assertRaisesRegex(ValueError, "Input cannot be empty"):
             check_input(doc)
 
 # Word Count Test Code
@@ -139,6 +149,28 @@ class TestScenarios(unittest.TestCase):
         except:
             self.fail("Unexpected exception was raised.")                  
 
+# Replace Word Test Code
+# 
+class TestWordReplace(unittest.TestCase):
+    def test_distinct_words_1(self):
+        doc = "The the THE thee three"
+        expected_output = "FFF the THE thee three"
+        self.assertEqual(replace_word(doc, "The", "FFF"), expected_output)
+
+    def test_distinct_words_2(self):
+        doc = "The the THE thee three"
+        expected_output = "The FFF THE thee three"
+        self.assertEqual(replace_word(doc, "the", "FFF"), expected_output)
+
+    def test_distinct_words_3(self):
+        doc = "The the THE thee three"
+        expected_output = "The the FFF thee three"
+        self.assertEqual(replace_word(doc, "THE", "FFF"), expected_output)
+
+
+
+
+#this piece of code belongs at the bottom as per the this article
+#https://mattermost.com/blog/how-to-unit-test-with-python/
 if __name__ == '__main__':
     unittest.main()
-
