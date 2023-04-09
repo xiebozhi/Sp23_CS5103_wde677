@@ -16,10 +16,6 @@ from word_stats import check_input
 from word_stats import replace_word 
 from word_stats import print_stats
 
-#not sure what this is but afraid to delete it since unittest.(RELATED)
-if __name__ == '__main__':
-    unittest.main()
-
 # Input checking Test Code
 #
 class TestInputChecking(unittest.TestCase):
@@ -175,3 +171,10 @@ class TestWordReplace(unittest.TestCase):
         doc = "The the THE thee three"
         expected_output = "The the FFF thee three"
         self.assertEqual(replace_word(doc, "THE", "FFF"), expected_output)
+
+
+
+#https://mattermost.com/blog/how-to-unit-test-with-python/
+#this piece of code is needed at the end as per the above website
+if __name__ == '__main__':
+    unittest.main()
