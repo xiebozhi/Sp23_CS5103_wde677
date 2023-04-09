@@ -5,11 +5,14 @@
 # Allows a single call to activate the whole stats suite
 import word_stats
 
+print("This is a general test of the broadcast system.\n Please return to your homes\n 1234 5678\n")
 print(word_stats.print_stats("This is a general test of the broadcast system.\n Please return to your homes\n 1234 5678\n"))
 
 #The FFF THE FFFe three
-print("\"The the THE thee three\" \'the\'")
+print("***")
+print("Replace Words:\n\"The the THE thee three\" \'the\' - \'FFF\'")
 print(word_stats.replace_word("The the THE thee three", "the", "FFF") )
+print("***")
 
 #infinite while loop, easily broken out of 
 while True:
