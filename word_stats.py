@@ -107,8 +107,7 @@ def count_chars(text): #CharCount is simply the length of the text field.
 # Adding ", flags=re.IGNORECASE" as arg to re.sub() affects case sensitivity 
 def replace_word(text, find, replace):
     #check inputs and it will throw errors if needed
-    check_list = [text, find, replace]
-    check_input(check_list)
+    check_input( [text, find, replace] )
 
    # use regular expression to match whole words only
     pattern = r'\b{}\b'.format(re.escape(find))
