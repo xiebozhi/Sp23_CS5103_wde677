@@ -4,13 +4,14 @@
 
 # Stats for text passed in as the singular parameter
 # First sprint: count_words
-# Second sprint: count_lines, count_chars
-#
+# Second sprint: count_lines, count_chars, check_input
+# Third sprint: replace_word, check_input([list])
+
 import string
 import re
 
-# Combine all the functions together in one function, for ease   
-# 
+# Combine function calls with same parameter together to print and label 
+# Just a courtesy 
 #
 def print_stats(text):
 
@@ -19,7 +20,7 @@ def print_stats(text):
             "Word Counts by freq:\n" + str(count_words(text) )
         )
 
-# Global input bounds checker that throws errors if failed  
+# Global input bounds checker that throws specific errors if failed  
 # 
 #
 def check_input(text):
@@ -72,7 +73,7 @@ def count_words(text):
     return sorted_word_counts
 
 # Count of the lines.  
-# (Counting the new strings)
+# number of new line characters + 1 
 #
 def count_lines (text): #looks for all \n tokens in the given string
     #check input and it will throw errors if needed
@@ -86,7 +87,7 @@ def count_lines (text): #looks for all \n tokens in the given string
 
     return line_count
 
-# Count of the individual characters.  
+# Count of the individual characters
 # Whitespace removed (space, tab, linefeed, return, formfeed, and vertical tab)
 #
 def count_chars(text): #CharCount is simply the length of the text field.
@@ -101,27 +102,16 @@ def count_chars(text): #CharCount is simply the length of the text field.
 
     return char_count
 
-
-#Third Sprint: Word Statistics: The second requirement change is to allow replacement of all occurrences of a 
-#given word to a given replacement word. Note that the replacement happens only when the given pattern word 
-#matches with a whole word. For example, for text "ab cd ef", replace "a" with "b" will result in no change, 
-#while replace "ab" with "cd" will result in "cd cd ef". 
-
-#similar to count_words, but 
-
-# Count of the individual words.  
-# All characters pushed to lowercase as to make this case insensitive
-#
+# Replace a word within a string.  
+# Uses regular expression to evaluate against the whole word
+# Adding ", flags=re.IGNORECASE" as arg to re.sub() affects case sensitivity 
 def replace_word(text, find, replace):
-    #check input and it will throw errors if needed
+    #check inputs and it will throw errors if needed
     check_list = [text, find, replace]
     check_input(check_list)
 
    # use regular expression to match whole words only
     pattern = r'\b{}\b'.format(re.escape(find))
-    text = re.sub(pattern, replace, text )# , flags=re.IGNORECASE)
-    
-    return text
+    text = re.sub(pattern, replace, text ) # <- Case sentitivity flag goes here if needed in future
 
-#print(word_stats.replace_word("The the THE thee three", "the", "FFF") )
-#problem: #The FFF THE FFFe three
+    return text

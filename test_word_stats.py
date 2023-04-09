@@ -4,8 +4,8 @@
 
 # Unit testing code for word statistics functions
 # First sprint: count_words
-# Second sprint: count_lines, count_chars
-#
+# Second sprint: count_lines, count_chars, check_input, test scenarios
+# Third sprint: replace_word, check_input([list])
 
 
 import unittest
@@ -169,7 +169,8 @@ class TestWordReplace(unittest.TestCase):
 
 
 
+
+#this piece of code belongs at the bottom as per the this article
 #https://mattermost.com/blog/how-to-unit-test-with-python/
-#this piece of code is needed at the end as per the above website
 if __name__ == '__main__':
     unittest.main()
