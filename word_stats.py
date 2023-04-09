@@ -7,6 +7,7 @@
 # Second sprint: count_lines, count_chars
 #
 import string
+import re
 
 # Combine all the functions together in one function, for ease   
 # 
@@ -108,10 +109,11 @@ def replace_word(text, find, replace):
     check_input(find)
     check_input(replace)
 
-    # replace tabs and newlines with spaces
-    text = text.replace(find, replace)
+   # use regular expression to match whole words only
+    pattern = r'\b{}\b'.format(re.escape(find))
+    text = re.sub(pattern, replace, text )# , flags=re.IGNORECASE)
     
     return text
 
-#problem: #The FFF THE FFFe three
 #print(word_stats.replace_word("The the THE thee three", "the", "FFF") )
+#problem: #The FFF THE FFFe three
