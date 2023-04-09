@@ -164,14 +164,14 @@ class TestWordReplace(unittest.TestCase):
     def test_distinct_words_1(self):
         doc = "The the THE thee three"
         expected_output = "FFF the THE thee three"
-        self.assertEqual(replace_word("The the THE thee three", "The", "FFF"), expected_output)
+        self.assertEqual(replace_word(doc, "The", "FFF"), expected_output)
 
     def test_distinct_words_2(self):
         doc = "The the THE thee three"
         expected_output = "The FFF THE thee three"
-        self.assertEqual(replace_word("The the THE thee three", "the", "FFF"), expected_output)
+        self.assertEqual(replace_word(doc, "the", "FFF"), expected_output)
 
     def test_distinct_words_3(self):
         doc = "The the THE thee three"
         expected_output = "The the FFF thee three"
-        self.assertEqual(replace_word("The the THE thee three", "THE", "FFF"), expected_output)
+        self.assertEqual(replace_word(doc, "THE", "FFF"), expected_output)
