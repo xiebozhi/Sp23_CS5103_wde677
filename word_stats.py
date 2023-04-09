@@ -74,7 +74,7 @@ def count_words(text):
 # Count of the lines.  
 # (Counting the new strings)
 #
-def count_lines (text): #looks for all “\n” tokens in the given string
+def count_lines (text): #looks for all \n tokens in the given string
     #check input and it will throw errors if needed
     check_input(text)
 
@@ -104,8 +104,8 @@ def count_chars(text): #CharCount is simply the length of the text field.
 
 #Third Sprint: Word Statistics: The second requirement change is to allow replacement of all occurrences of a 
 #given word to a given replacement word. Note that the replacement happens only when the given pattern word 
-#matches with a whole word. For example, for text “ab cd ef”, replace “a” with “b” will result in no change, 
-#while replace “ab” with “cd” will result in “cd cd ef”. 
+#matches with a whole word. For example, for text "ab cd ef", replace "a" with "b" will result in no change, 
+#while replace "ab" with "cd" will result in "cd cd ef". 
 
 #similar to count_words, but 
 
