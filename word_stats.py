@@ -24,15 +24,24 @@ def print_stats(text):
 #
 def check_input(text):
 
-    if not isinstance(text, str):
-        raise TypeError("Input must be a string")
+    #if input is a single string, save as a list
+    if isinstance(text, str):
+        text_list = [text]
+    elif isinstance(text, list):
+        text_list = text
+    else:
+        raise TypeError("Input must be a string or a list")
 
-    if (text==""):
-        raise ValueError("Input cannot be empty")
+    for text in text_list:
+        if not isinstance(text, str):
+            raise TypeError("Elements in list must be strings")
 
-    if (len(text)>=10000):
-        print(text)
-        raise ValueError("Input exceeds maximum length")
+        if text == "":
+            raise ValueError("Input cannot be empty")
+
+        if len(text) >= 10000:
+            print(text)
+            raise ValueError("Input exceeds maximum length")
     
     return True
 
@@ -105,9 +114,8 @@ def count_chars(text): #CharCount is simply the length of the text field.
 #
 def replace_word(text, find, replace):
     #check input and it will throw errors if needed
-    check_input(text)
-    check_input(find)
-    check_input(replace)
+    check_list = [text, find, replace]
+    check_input(check_list)
 
    # use regular expression to match whole words only
     pattern = r'\b{}\b'.format(re.escape(find))

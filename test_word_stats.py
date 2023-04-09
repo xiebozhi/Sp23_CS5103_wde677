@@ -41,6 +41,15 @@ class TestInputChecking(unittest.TestCase):
         doc = 1000
         with self.assertRaisesRegex(TypeError, "Input must be a string"):
             check_input(doc)
+    
+    def test_good_list(self): 
+        doc = ["test","test2"]
+        self.assertTrue(check_input(doc))
+
+    def test_null_list(self): 
+        doc = ["","test2"]
+        with self.assertRaisesRegex(TypeError, "Input cannot be empty"):
+            check_input(doc)
 
 # Word Count Test Code
 #
@@ -144,12 +153,25 @@ class TestScenarios(unittest.TestCase):
         except:
             self.fail("Unexpected exception was raised.")                  
 
-#Third Sprint: Word Statistics: The second requirement change is to allow replacement of all occurrences of a 
-#given word to a given replacement word. Note that the replacement happens only when the given pattern word 
-#matches with a whole word. For example, for text “ab cd ef”, replace “a” with “b” will result in no change, 
-#while replace “ab” with “cd” will result in “cd cd ef”. 
+# Replace Word Test Code
+# 
 class TestWordReplace(unittest.TestCase):
     def test_replace_normal(self):
         doc = "The quick brown fox jumped over the lazy dog, but the 1 dog didn't care. The fox was too fast for the 2 dogs to catch, and they could only watch as it disappeared into the distance. However, the 3rd dog was smarter than the others and knew a shortcut;\n\n it ran ahead and caught the fox by surprise! \"What's going on here?\" the fox asked. But the dog just barked in triumph, knowing that it had won the race.\n\n Meanwhile, the lazy dog snoozed on, oblivious to the excitement happening around it.\n + = % $ \n\n fin fin."        
         expected_output = "The quick brown fox jumped over THE lazy dog, but THE 1 dog didn't care. The fox was too fast for THE 2 dogs to catch, and THEy could only watch as it disappeared into THE distance. However, THE 3rd dog was smarter than THE oTHErs and knew a shortcut;\n\n it ran ahead and caught THE fox by surprise! \"What's going on here?\" THE fox asked. But THE dog just barked in triumph, knowing that it had won THE race.\n\n Meanwhile, THE lazy dog snoozed on, oblivious to THE excitement happening around it.\n + = % $ \n\n fin fin."        
         self.assertEqual(replace_word(doc,"the", "THE"), expected_output)
+
+    def test_distinct_words_1(self):
+        doc = "The the THE thee three"
+        expected_output = "FFF the THE thee three"
+        self.assertEqual(replace_word("The the THE thee three", "The", "FFF"), expected_output)
+
+    def test_distinct_words_2(self):
+        doc = "The the THE thee three"
+        expected_output = "The FFF THE thee three"
+        self.assertEqual(replace_word("The the THE thee three", "the", "FFF"), expected_output)
+
+    def test_distinct_words_3(self):
+        doc = "The the THE thee three"
+        expected_output = "The the FFF thee three"
+        self.assertEqual(replace_word("The the THE thee three", "THE", "FFF"), expected_output)
