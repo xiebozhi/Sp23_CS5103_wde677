@@ -1,7 +1,7 @@
 # Dev folders to ignore
 .vs/
 TestResults/
-
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
