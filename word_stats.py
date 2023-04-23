@@ -46,6 +46,20 @@ def check_input(text):
     
     return True
 
+def to_upper_or_lower(validated_text, caseParam):
+     #check case
+    match caseParam:
+        case "lower":
+            validated_text= validated_text.lower()
+        case "upper":
+            validated_text= validated_text.upper()
+        case "sensitive":
+            #do nothing
+            print("")
+        case _:
+            print("Case parameter = "+ caseParam + ". Not performing upper or lower conversion, defaulting to case sensitive.")
+    return validated_text
+
 # Count of the individual words.  
 # All characters pushed to lowercase as to make this case insensitive
 #
@@ -53,14 +67,8 @@ def count_words(text,caseParam ='lower', tokenizers=["\t","\n"," "] ):
     #check input text and it will throw errors if needed
     check_input(text)
     
-    #check case
-    match caseParam:
-        case "lower":
-            text= text.lower()
-        case "upper":
-            text= text.upper()
-        case _:
-            print("Count_words - Case parameter = "+ caseParam + ". Not performing upper or lower conversion.")
+    #Convert text to upper or lower, if specified in the parameters
+    text = to_upper_or_lower(text, caseParam)
         
     for token in tokenizers:   
         # replace tabs and newlines with spaces
@@ -97,12 +105,16 @@ def count_lines (text): #looks for all \n tokens in the given string
 
     return line_count
 
+
 # Count of the individual characters
 # Whitespace removed (space, tab, linefeed, return, formfeed, and vertical tab)
 #
-def count_chars(text): #CharCount is simply the length of the text field.
+def count_chars(text, caseParam ='lower'): 
     #check input and it will throw errors if needed
     check_input(text)
+    
+    #Convert text to upper or lower, if specified in the parameters
+    text = to_upper_or_lower(text, caseParam)
 
     print(f"len = {len(text)}")
     char_count = 0
