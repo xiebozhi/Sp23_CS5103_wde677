@@ -79,6 +79,11 @@ class TestCountWords(unittest.TestCase):
         doc = "This  \tis\n a\t  test.\nThis\tis only a  test."
         expected_output = {'this': 2, 'is': 2, 'a': 2, 'test.': 2, 'only': 1, '': 6}
         self.assertEqual(count_words(doc), expected_output)
+    
+    def test_double_space_new_upper_and_tokens(self):
+        doc = "This  \tis\n a\t  test.\nThis\tis only a  test."
+        expected_output = {'': 4, '\tIS': 1, 'A': 1, 'A\t': 1, 'ONLY': 1, 'TEST.': 2, 'THIS': 1, 'THIS\tIS': 1}
+        self.assertEqual(count_words(doc, "upper",["\n"," "]), expected_output)
 
 # Line Count Test Code
 #

@@ -49,15 +49,25 @@ def check_input(text):
 # Count of the individual words.  
 # All characters pushed to lowercase as to make this case insensitive
 #
-def count_words(text):
-    #check input and it will throw errors if needed
+def count_words(text,caseParam ='lower', tokenizers=["\t","\n"," "] ):
+    #check input text and it will throw errors if needed
     check_input(text)
-
-    # replace tabs and newlines with spaces
-    text = text.replace("\t", "*").replace("\n", "*").replace(" ", "*") #breaks? on "  " double space?
+    
+    #check case
+    match caseParam:
+        case "lower":
+            text= text.lower()
+        case "upper":
+            text= text.upper()
+        case _:
+            print("Count_words - Case parameter = "+ caseParam + ". Not performing upper or lower conversion.")
+        
+    for token in tokenizers:   
+        # replace tabs and newlines with spaces
+        text = text.replace(token, " ")
 
     # split text into lowercase words
-    words = text.lower().split("*")
+    words = text.split(" ")
     
     # count frequency of each unique word
     word_counts = {}
