@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module word_stats</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">word_stats</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cbobbs%5Csource%5Crepos%5Csp23_cs5103_wde677%5Cword_stats.py">c:\users\bobbs\source\repos\sp23_cs5103_wde677\word_stats.py</a></td></tr></table>
+    <p><span class="code">#&nbsp;Bobb&nbsp;Shields<br>
+#&nbsp;wde677<br>
+#</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="re.html">re</a><br>
+</td><td class="multicolumn"><a href="string.html">string</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-check_input"><strong>check_input</strong></a>(text)</dt><dd><span class="code">Global&nbsp;input&nbsp;bounds&nbsp;checker&nbsp;that&nbsp;throws&nbsp;specific&nbsp;errors&nbsp;if&nbsp;failed<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;(string):&nbsp;Any&nbsp;given&nbsp;text:&nbsp;A&nbsp;paragraph&nbsp;with&nbsp;symbols,&nbsp;punctuation,&nbsp;numbers,&nbsp;and&nbsp;letters.&nbsp;<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TypeError:&nbsp;Check&nbsp;for&nbsp;string&nbsp;or&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TypeError:&nbsp;When&nbsp;a&nbsp;list&nbsp;-&nbsp;check&nbsp;elements&nbsp;for&nbsp;whether&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ValueError:&nbsp;Cannot&nbsp;be&nbsp;empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ValueError:&nbsp;Exceding&nbsp;maximum&nbsp;text&nbsp;length<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;boolean:&nbsp;Returns&nbsp;true,&nbsp;if&nbsp;no&nbsp;errors&nbsp;were&nbsp;thrown</span></dd></dl>
+ <dl><dt><a name="-count_chars"><strong>count_chars</strong></a>(text, toCase='lower')</dt><dd><span class="code">Count&nbsp;of&nbsp;the&nbsp;individual&nbsp;characters&nbsp;of&nbsp;the&nbsp;input&nbsp;text&nbsp;with&nbsp;whitespace&nbsp;removed&nbsp;(space,&nbsp;tab,&nbsp;linefeed,&nbsp;return,&nbsp;formfeed,&nbsp;and&nbsp;vertical&nbsp;tab)<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;(string):&nbsp;Any&nbsp;given&nbsp;text:&nbsp;A&nbsp;paragraph&nbsp;with&nbsp;symbols,&nbsp;punctuation,&nbsp;numbers,&nbsp;and&nbsp;letters.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;toCase&nbsp;(str,&nbsp;optional):&nbsp;Transform&nbsp;text&nbsp;to&nbsp;'upper'&nbsp;or&nbsp;'lower'&nbsp;case,&nbsp;or&nbsp;stay&nbsp;case&nbsp;'sensitive'.&nbsp;Defaults&nbsp;to&nbsp;'lower'.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;integer:&nbsp;Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;non-trivial&nbsp;characters&nbsp;in&nbsp;the&nbsp;text</span></dd></dl>
+ <dl><dt><a name="-count_lines"><strong>count_lines</strong></a>(text)</dt><dd><span class="code">Count&nbsp;of&nbsp;the&nbsp;lines:&nbsp;num(newline&nbsp;chars)&nbsp;+&nbsp;1<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;(string):&nbsp;Any&nbsp;given&nbsp;text:&nbsp;A&nbsp;paragraph&nbsp;with&nbsp;symbols,&nbsp;punctuation,&nbsp;numbers,&nbsp;and&nbsp;letters.&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;integer:&nbsp;Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;lines&nbsp;in&nbsp;the&nbsp;text</span></dd></dl>
+ <dl><dt><a name="-count_words"><strong>count_words</strong></a>(text, toCase='lower', tokenizers=['\t', '\n', ' '])</dt><dd><span class="code">Count&nbsp;of&nbsp;the&nbsp;individual&nbsp;words.&nbsp;&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;(string):&nbsp;Any&nbsp;given&nbsp;text:&nbsp;A&nbsp;paragraph&nbsp;with&nbsp;symbols,&nbsp;punctuation,&nbsp;numbers,&nbsp;and&nbsp;letters.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;toCase&nbsp;(str,&nbsp;optional):&nbsp;Transform&nbsp;text&nbsp;to&nbsp;'upper'&nbsp;or&nbsp;'lower'&nbsp;case,&nbsp;or&nbsp;stay&nbsp;case&nbsp;'sensitive'.&nbsp;Defaults&nbsp;to&nbsp;'lower'.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tokenizers&nbsp;(list,&nbsp;optional):&nbsp;User&nbsp;provided&nbsp;list&nbsp;of&nbsp;tokens&nbsp;upon&nbsp;which&nbsp;to&nbsp;split&nbsp;the&nbsp;text.&nbsp;Defaults&nbsp;to&nbsp;["&nbsp;&nbsp;","<br>
+","&nbsp;"].<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dictionary:&nbsp;The&nbsp;individual&nbsp;words&nbsp;and&nbsp;their&nbsp;counts,&nbsp;sorted&nbsp;from&nbsp;highest&nbsp;to&nbsp;lowest</span></dd></dl>
+ <dl><dt><a name="-print_stats"><strong>print_stats</strong></a>(text)</dt><dd><span class="code">Simple&nbsp;helper&nbsp;function&nbsp;to&nbsp;count&nbsp;lines&nbsp;&amp;&nbsp;chars&nbsp;&amp;&nbsp;words<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;(string):&nbsp;Any&nbsp;given&nbsp;text:&nbsp;A&nbsp;paragraph&nbsp;with&nbsp;symbols,&nbsp;punctuation,&nbsp;numbers,&nbsp;and&nbsp;letters.&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;null:&nbsp;Prints&nbsp;a&nbsp;summary&nbsp;of&nbsp;the&nbsp;three&nbsp;functions.&nbsp;&nbsp;Used&nbsp;in&nbsp;main.py</span></dd></dl>
+ <dl><dt><a name="-replace_word"><strong>replace_word</strong></a>(text, find, replace)</dt><dd><span class="code">#&nbsp;Replace&nbsp;a&nbsp;word&nbsp;within&nbsp;a&nbsp;string.&nbsp;&nbsp;Uses&nbsp;regular&nbsp;expression&nbsp;to&nbsp;evaluate&nbsp;against&nbsp;the&nbsp;whole&nbsp;word<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;(string):&nbsp;Any&nbsp;given&nbsp;text:&nbsp;A&nbsp;paragraph&nbsp;with&nbsp;symbols,&nbsp;punctuation,&nbsp;numbers,&nbsp;and&nbsp;letters.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;find&nbsp;(string):&nbsp;The&nbsp;word&nbsp;or&nbsp;body&nbsp;of&nbsp;text&nbsp;to&nbsp;be&nbsp;replaced<br>
+&nbsp;&nbsp;&nbsp;&nbsp;replace&nbsp;(string):&nbsp;The&nbsp;word&nbsp;or&nbsp;body&nbsp;of&nbsp;text&nbsp;to&nbsp;be&nbsp;substituted&nbsp;in&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;string:&nbsp;Original&nbsp;text&nbsp;with&nbsp;keywords&nbsp;replaced</span></dd></dl>
+ <dl><dt><a name="-to_upper_or_lower"><strong>to_upper_or_lower</strong></a>(validated_text, toCase)</dt><dd><span class="code">Transform&nbsp;the&nbsp;text&nbsp;to&nbsp;lower-&nbsp;or&nbsp;uppercase<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;validated_text&nbsp;(string):&nbsp;Any&nbsp;given&nbsp;text:&nbsp;A&nbsp;paragraph&nbsp;with&nbsp;symbols,&nbsp;punctuation,&nbsp;numbers,&nbsp;and&nbsp;letters.&nbsp;Should&nbsp;already&nbsp;be&nbsp;checked&nbsp;by&nbsp;check_input<br>
+&nbsp;&nbsp;&nbsp;&nbsp;toCase&nbsp;(string):&nbsp;Flags:&nbsp;{'lower',&nbsp;'upper',&nbsp;'sensitive'}</span></dd></dl>
+</td></tr></table>
+</body></html>
